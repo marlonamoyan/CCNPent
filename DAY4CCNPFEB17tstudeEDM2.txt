@@ -267,7 +267,7 @@ router ospf 1
 end
 
 R2#
-ping 8.8.8.8
+ping 8.8.8.8   
 
 
 @@static default routing in P1:

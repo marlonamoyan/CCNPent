@@ -355,17 +355,19 @@ IPV6 ADDRESSING FOR THE ISP'S
 	ipv6 unicast-routing
 	int lo4
 		ipv6 add b55::1/128
-	router bgp 45
+		ipv6 add 8:8:8:8::8888/128
+	router bgp 450
 	    !no bgp default ipv4-unicast
 		!bgp log-neighbor-changes
-		neigh b:3:4:b::3 remote-as 3
-		neigh b:2:4:b::2 remote-as 2
-		neigh b:1:4:b::4 remote-as 45
+		neigh b:3:4:b::3 remote-as 300
+		neigh b:2:4:b::2 remote-as 200
+		neigh b:1:4:b::4 remote-as 450
 		address-family ipv6
 			neigh b:3:4:b::3 activate
 			neigh b:2:4:b::2 activate
 			neigh b:1:4:b::4 activate
 			network b55::1/128
+			network 8:8:8:8::8888/128
 			network b:3:4:b::/64
 			network b:2:4:b::/64
 			network b:1:4:b::/64
@@ -376,10 +378,10 @@ IPV6 ADDRESSING FOR THE ISP'S
 		ipv6 unicast-routing
 		int lo3
 			ipv6 add b33::1/128
-		router bgp 3
-			neigh b:3:4:b::5 remote-as 45
-			neigh b:1:2:b::2 remote-as 2
-			neigh b:1:33:b::1 remote-as 1
+		router bgp 300
+			neigh b:3:4:b::5 remote-as 450
+			neigh b:1:2:b::2 remote-as 200
+			neigh b:1:33:b::1 remote-as 100
 			address-family ipv6
 				neigh b:3:4:b::5 activate
 				neigh b:1:2:b::2 activate
@@ -395,39 +397,42 @@ IPV6 ADDRESSING FOR THE ISP'S
 	ipv6 unicast-routing
 	int lo2
 		ipv6 add b22::1/128
-		router bgp 2
-___________________________?
-___________________________?
-___________________________?
-___________________________?
-___________________________?
-___________________________?
-___________________________?
-___________________________?
-___________________________?
-___________________________?
-___________________________?
-___________________________?
-___________________________?
+	router bgp 200
+neigh b:2:4:b::5 remote-as 450
+neigh b:1:2:b::3 remote-as 300
+neigh b:2:1:b::4 remote-as 450
+neigh b:1:22:b::1 remote-as 100
+address-family ipv6
+neigh b:2:4:b::5 activate
+neigh b:1:2:b::3 activate
+neigh b:2:1:b::4 activate
+neigh b:1:22:b::1 activate
+network B:1:2:B::/64
+network B:1:22:B::/64
+network B:2:1:B::/64
+network B:2:4:B::/64
+network b22::1/128
+end
+
 				
 @ISP1
 	conf t
 	ipv6 unicast-routing
 	int lo1
 		ipv6 add b44::1/128
-		router bgp 45
-___________________________?
-___________________________?
-___________________________?
-___________________________?
-___________________________?
-___________________________?
-___________________________?
-___________________________?
-___________________________?
-___________________________?
-___________________________?
-___________________________?
+	router bgp 450
+neigh b:1:4:b::5 remote-as 450
+neigh b:2:1:b::2 remote-as 200
+neigh b:1:11:b::1 remote-as 100
+address-family ipv6
+neigh b:1:4:b::5 activate
+neigh b:2:1:b::2 activate
+neigh b:1:11:b::1 activate
+network B:1:4:B::/64
+network B:1:11:B::/64
+network B:2:1:B::/64
+network b44::1/128
+end
 ___________________________?
 				
 @R1
